@@ -1,0 +1,70 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+    int m,n;
+    cin>>m>>n;//m矩阵的行数，n矩阵的列数
+    int arrey[10][10];
+    for(int i = 0;i<m;i++){
+        for(int j = 0;j<n;j++){
+            cin>>arrey[i][j];
+        }
+    }//输入初始矩阵
+
+    for (int i = 0;i<m;i++){
+        for(int j = 0;j<n;j++){
+            cout << arrey[i][j] << " ";
+        }
+        i++;
+        if(i<m){
+            for(int j = n-1;j>=0;j--){
+                cout << arrey[i][j] << " ";}
+            }
+        else break;
+    }//蛇形输出数组
+    
+    cout << endl;
+    
+    int i1 = 0,j = 0;
+    // i = 0;j++
+    //j = n-1,i++
+    //i = m-1,j-- j = 0
+    //j=0, i-- i = 0+1
+    //其中任何一步没有执行就跳出循环
+    int p = 0,q = 1;
+    while(m>0&&n>0&&p<=m&&q<=n){
+        int f = 0;
+        while(j<n){
+            cout<< arrey[i1][j] << " ";
+            j++;
+            f++;
+        }
+        if(f == 0)break;
+        j -= 1;
+        int c = 0;
+        while(i1<m-1){
+            i1++;
+            cout << arrey[i1][j] << " ";
+            c++;
+        }
+        if(c == 0)break;
+        int d = 0;
+        while(j>p){
+            j--;
+            cout << arrey[i1][j] << " ";
+            d++;
+        }if(d == 0)break;
+        int e = 0;
+        while(i1>q){
+            i1--;
+            cout << arrey[i1][j] << " ";
+            e++;
+        }
+        if(e == 0)break;
+        q++;
+        n--;
+        m--;
+        j++;
+        p++;
+    }
+}
